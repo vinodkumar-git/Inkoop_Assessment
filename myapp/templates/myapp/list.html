@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load staticfiles %}
+
+<div class="container-fluid p-3 mb-2 bg-light text-dark">
+    <section id="contact" class="section-bg">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Original Image</th>
+              <th scope="col">Resized Image</th>
+              <th scope="col">Dimensions</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% if documents %}
+            <ul>
+            {% for document in documents %}
+                <tr>
+                  <th scope="row">{{ document.id }}</th>
+                  <td><li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}
+                    <img src="{{ document.docfile.url }}" alt="{{ document.docfile.name }}">
+                    </a></li></td>
+                  <td><li><a href="{{ document.final_docfile.url }}">{{ document.final_docfile.name }}
+                    <img src="{{ document.final_docfile.url }}" alt="{{ document.final_docfile.name }}">
+                    </a></li></td>
+                  <td>{{ document.height }} X {{ document.width }}</td>
+                </tr>
+            {% endfor %}
+            </ul>
+            {% else %}
+                    <p>No documents!! Please Upload images to view the list of resized images.</p>
+            {% endif %}
+
+          </tbody>
+        </table>
+    </section><!-- End Contact Section -->
+</div>
+
+{% endblock %}
+
+
+
